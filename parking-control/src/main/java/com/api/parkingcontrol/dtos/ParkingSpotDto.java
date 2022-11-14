@@ -1,7 +1,16 @@
 package com.api.parkingcontrol.dtos;
 
+import com.api.parkingcontrol.models.ParkingSpotModel;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingSpotDto {
 
@@ -94,4 +103,34 @@ public class ParkingSpotDto {
         this.block = block;
     }
 
+    private Field[] getAllFields() {
+        return ParkingSpotDto.class.getDeclaredFields();
+    }
+
+    public Specification<ParkingSpotModel> toSpec() throws RuntimeException {
+        return (root, query, builder) -> {
+            List<Predicate> precicates = new ArrayList<>();
+            var fields = getAllFields();
+
+            for (Field field: fields) {
+                String valueField;
+                try {
+                    valueField = field.get(this).toString();
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                } catch (NullPointerException e) {
+                    valueField = "";
+                }
+
+                if (StringUtils.hasText(valueField)) {
+                    Path<String> pathField = root.get(field.getName());
+                    Predicate predicateField = builder.equal(pathField, valueField);
+                    precicates.add(predicateField);
+                }
+
+            }
+
+            return builder.and(precicates.toArray(new Predicate[0]));
+        };
+    }
 }
