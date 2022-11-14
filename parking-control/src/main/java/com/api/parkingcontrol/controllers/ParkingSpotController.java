@@ -1,5 +1,8 @@
 package com.api.parkingcontrol.controllers;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import com.api.parkingcontrol.dtos.ParkingSpotDto;
 import com.api.parkingcontrol.models.ParkingSpotModel;
 import com.api.parkingcontrol.services.ParkingSpotService;
@@ -54,7 +57,16 @@ public class ParkingSpotController {
     @GetMapping
     public ResponseEntity<Page<ParkingSpotModel>> getAllParkingSpots(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                                                                      ParkingSpotDto parkingSpotDto){
-        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll(pageable,parkingSpotDto.toSpec()));
+
+        Page<ParkingSpotModel> parkingSpotModels = parkingSpotService.findAll(pageable,parkingSpotDto.toSpec());
+
+        for (ParkingSpotModel parkingSpotModel : parkingSpotModels) {
+            var id = parkingSpotModel.getId();
+            parkingSpotModel.add(linkTo(methodOn(ParkingSpotController.class).getOneParkingSpot(id)).withSelfRel());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModels);
+
     }
 
     @GetMapping("/{id}")
@@ -64,6 +76,7 @@ public class ParkingSpotController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
         }
 
+        parkingSpotModelOptional.get().add(linkTo(methodOn(ParkingSpotController.class).getAllParkingSpots(null, new ParkingSpotDto())).withRel("List parking spot"));
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModelOptional.get());
     }
 
