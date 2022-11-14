@@ -26,15 +26,15 @@ public class ParkingSpotService {
         return parkingSpotRepository.save(parkingSpotModel);
     }
     
-    public boolean existByLicensePlateCar(String licensePlateCar) {
+    public boolean existsByLicensePlateCar(String licensePlateCar) {
         return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
     }
 
-    public boolean existByParkingSpotNumber(String parkingSpotNumber) {
+    public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
         return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
     }
 
-    public boolean existByApartmentAndBlock(String apartment, String block) {
+    public boolean existsByApartmentAndBlock(String apartment, String block) {
         return parkingSpotRepository.existsByApartmentAndBlock(apartment,block);
     }
 
@@ -51,4 +51,15 @@ public class ParkingSpotService {
         parkingSpotRepository.delete(parkingSpotModel);
     }
 
+    public boolean existsByLicensePlateCarAndIdNot(String licensePlateCar, UUID id) {
+        return parkingSpotRepository.existsByLicensePlateCarAndIdNot(licensePlateCar, id);
+    }
+
+    public boolean existsByParkingSpotNumberAndIdNot(String parkingSpotNumber, UUID id) {
+        return parkingSpotRepository.existsByParkingSpotNumberAndIdNot(parkingSpotNumber, id);
+    }
+
+    public boolean existsByApartmentAndBlockAndIdNot(String apartment, String block, UUID id) {
+        return parkingSpotRepository.existsByApartmentAndBlockAndIdNot(apartment, block, id);
+    }
 }
