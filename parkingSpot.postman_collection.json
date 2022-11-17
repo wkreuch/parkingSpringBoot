@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "8a2a5fdb-421c-4382-b6f4-bbf2f468c047",
+		"name": "parkingSpot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/parking-spot",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parking-spot?parkingSpotNumber=22817",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-spot"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "parkingSpotNumber",
+							"value": "22817"
+						},
+						{
+							"key": "licensePlateCar",
+							"value": "RRS8363",
+							"disabled": true
+						},
+						{
+							"key": "brandCar",
+							"value": "audi",
+							"disabled": true
+						},
+						{
+							"key": "modelCar",
+							"value": "q5",
+							"disabled": true
+						},
+						{
+							"key": "colorCar",
+							"value": "black",
+							"disabled": true
+						},
+						{
+							"key": "responsibleName",
+							"value": "Maria",
+							"disabled": true
+						},
+						{
+							"key": "apartment",
+							"value": "385",
+							"disabled": true
+						},
+						{
+							"key": "block",
+							"value": "Aa",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/parking-spot",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "userNormal",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parkingSpotNumber\": \"268117\",\r\n    \"licensePlateCar\": \"RRS1111\",\r\n    \"brandCar\": \"audi\",\r\n    \"modelCar\": \"q5\",\r\n    \"colorCar\": \"black\",\r\n    \"responsibleName\": \"Carlos Daniel\",\r\n    \"apartment\": \"3726\",\r\n    \"block\": \"B\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/parking-spot",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-spot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/parking-spot/7c13a17e-b4e7-4aeb-93d6-5e707ad6f884",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parking-spot/4e3fa965-2023-43fb-b361-774c7f5d6c6b",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-spot",
+						"4e3fa965-2023-43fb-b361-774c7f5d6c6b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/parking-spot/e09421cf-bebb-41bd-b903-ff7f9c28f27d",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "userNormal",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/parking-spot/7c13a17e-b4e7-4aeb-93d6-5e707ad6f884",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-spot",
+						"7c13a17e-b4e7-4aeb-93d6-5e707ad6f884"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/parking-spot/4e3fa965-2023-43fb-b361-774c7f5d6c6b",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "userAuth",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"parkingSpotNumber\": \"2A817\",\r\n    \"licensePlateCar\": \"RRG8363\",\r\n    \"brandCar\": \"audi\",\r\n    \"modelCar\": \"q5\",\r\n    \"colorCar\": \"black\",\r\n    \"responsibleName\": \"Maria\",\r\n    \"apartment\": \"385\",\r\n    \"block\": \"CA\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/parking-spot/4e3fa965-2023-43fb-b361-774c7f5d6c6b",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"parking-spot",
+						"4e3fa965-2023-43fb-b361-774c7f5d6c6b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
